@@ -1,3 +1,4 @@
 langchain
 streamlit-chat
 openai
+chromadb
