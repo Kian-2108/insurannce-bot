@@ -15,7 +15,7 @@ import time
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain import PromptTemplate
-# from langchain.vectorstores import Chromapi
+from langchain.vectorstores import Chroma
 from langchain.agents.tools import Tool
 from langchain.experimental.plan_and_execute import PlanAndExecute, load_agent_executor, load_chat_planner
 from langchain import OpenAI, VectorDBQA
