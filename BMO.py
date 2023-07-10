@@ -110,9 +110,9 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 messages = st.container()
 user_input = st.text_input("Query", key="widget", on_change=submit)
-if user_input:
-    output = agent.run(user_input)
-    st.session_state.past.append(user_input)
+if st.session_state.something:
+    output = agent.run(st.session_state.something)
+    st.session_state.past.append(st.session_state.something)
     st.session_state.generated.append(output)
 if 'generated' in st.session_state:
     with messages:
