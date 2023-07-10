@@ -14,7 +14,7 @@ from langchain.llms import GooglePalm
 # import random
 # import time
 # from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import OpenAIEmbeddings, GooglePalmEmbeddings
 # from langchain import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.agents.tools import Tool
