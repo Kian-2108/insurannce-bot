@@ -26,7 +26,8 @@ embeddings = GooglePalmEmbeddings(model_name="models/embedding-gecko-001")
 #     docsearch.save_local(folder_path='FAISS_VS', index_name=f"{file.split('.')[0]}_index")
 #     print(file.split(".")[0])
 
-docsearch = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name=f"{file_names[0].split('.')[0]}_index")
+docsearch = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name=f"Basel Capital Adequacy Reporting (BCAR) 2023_index")
 retriever = docsearch.as_retriever()
-
-print(retriever.get_relevant_documents("Which reports bank BMO has to send to OSFI for BCAR Credit Risk?"))
+bmo_retriver = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='bmo_ar2022_index').as_retriever()
+qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriver, verbose=True)
+print(qa_bmo.run("Which reports bank BMO has to send to OSFI for BCAR Credit Risk?"))
