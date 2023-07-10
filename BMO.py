@@ -6,16 +6,16 @@ from langchain.llms import AzureOpenAI
 from langchain.document_loaders import DirectoryLoader,PyPDFLoader
 from langchain.document_loaders import UnstructuredExcelLoader
 from langchain.vectorstores import DocArrayInMemorySearch
-from langchain.memory import ConversationBufferMemory
+from langchain.mpiemory import ConversationBufferMemory
 from IPython.display import display, Markdown
 import pandas as pd
-import gradio as gr
+# import gradio as gr
 import random
 import time
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain import PromptTemplate
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import Chromapi
 from langchain.agents.tools import Tool
 from langchain.experimental.plan_and_execute import PlanAndExecute, load_agent_executor, load_chat_planner
 from langchain import OpenAI, VectorDBQA
