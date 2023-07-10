@@ -30,12 +30,18 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyD6lORTrf5wLPP6wR6keH6yhP2Kwd-A1r4"
 llm = GooglePalm(model_name = "models/text-bison-001",temperature = 0.1)
 embeddings = GooglePalmEmbeddings(model_name="models/embedding-gecko-001")
 
-bcar_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Basel Capital Adequacy Reporting (BCAR) 2023_index').as_retriever()
-bmo_retriver = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='bmo_ar2022_index').as_retriever()
-creditirb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Capital Adequacy Requirements (CAR) Chapter 5 Credit Risk Internal Ratings Based Approach_index').as_retriever()
-creditstd_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Capital Adequacy Requirements (CAR) Chapter 4  Credit Risk Standardized Approach_index').as_retriever()
-nbc_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='NATIONAL BANK OF CANADA_ 2022 Annual Report_index').as_retriever()
-smsb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='SMSB_index').as_retriever()
+bcar_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Basel Capital Adequacy Reporting (BCAR) 2023_index')
+# .as_retriever()
+bmo_retriver = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='bmo_ar2022_index')
+# .as_retriever()
+creditirb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Capital Adequacy Requirements (CAR) Chapter 5 Credit Risk Internal Ratings Based Approach_index')
+# .as_retriever()
+creditstd_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='Capital Adequacy Requirements (CAR) Chapter 4  Credit Risk Standardized Approach_index')
+# .as_retriever()
+nbc_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='NATIONAL BANK OF CANADA_ 2022 Annual Report_index')
+# .as_retriever()
+smsb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='SMSB_index')
+# .as_retriever()
 
 indices = [bcar_retriever,bmo_retriver,creditirb_retriever,creditstd_retriever,nbc_retriever,smsb_retriever]
 
@@ -85,7 +91,7 @@ for index in indices[1:]:
 # executor = load_agent_executor(llm, tools, verbose=True)
 # agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
 
-agent = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
+agent = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever.as_retriever(), verbose=True)
 
 # generated stores AI generated responses
 st.title("BMO Chatbot")
