@@ -3,4 +3,4 @@ streamlit-chat
 openai
 chromadb
 google-generativeai
-faiss
+faiss-cpu
