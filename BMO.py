@@ -100,10 +100,7 @@ if 'generated' not in st.session_state:
 ## past stores User's questions
 if 'past' not in st.session_state:
     st.session_state['past'] = []
-def get_text():
-    input_text = st.text_input("You: ", "", key="input")
-    return input_text
-user_input = get_text()
+user_input = st.container()
 if user_input:
     output = agent.run(user_input)
     st.session_state.past.append(user_input)
@@ -112,6 +109,6 @@ if 'generated' in st.session_state:
     for i in range(len(st.session_state['generated'])-1,-1,-1):
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
         message(st.session_state["generated"][i], key=str(i))
-
+user_input.text_input("You: ", "", key="input")
 
 # agent.run("Which reports bank BMO has to send to OSFI for BCAR Credit Risk?")
