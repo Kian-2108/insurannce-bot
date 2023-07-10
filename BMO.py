@@ -1,7 +1,7 @@
 import os
 # from dotenv import load_dotenv, find_dotenv
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI, 
+from langchain.chat_models import ChatOpenAI
 from langchain.llms import GooglePalm
 # from langchain.llms import AzureOpenAI
 # from langchain.document_loaders import DirectoryLoader,PyPDFLoader
