@@ -37,48 +37,55 @@ creditstd_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embe
 nbc_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='NATIONAL BANK OF CANADA_ 2022 Annual Report_index').as_retriever()
 smsb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embeddings, index_name='SMSB_index').as_retriever()
 
-qa_bcar = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
-qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriver, verbose=True)
-qa_creditirb = RetrievalQA.from_chain_type(llm=llm, retriever=creditirb_retriever, verbose=True)
-qa_creditstd = RetrievalQA.from_chain_type(llm=llm, retriever=creditstd_retriever, verbose=True)
-qa_smsb = RetrievalQA.from_chain_type(llm=llm, retriever=smsb_retriever, verbose=True)
-qa_nbc = RetrievalQA.from_chain_type(llm=llm, retriever=nbc_retriever, verbose=True)
+indices = [bcar_retriever,bmo_retriver,creditirb_retriever,creditstd_retriever,nbc_retriever,smsb_retriever]
 
-tools = [
-    Tool(
-        name = "BCAR",
-        func=qa_bcar.run,
-        description="useful for when you need to find answer regarding bcar different categories and schedules"
-    ),
-    Tool(
-        name="BMO Annual Report",
-        func=qa_bmo.run,
-        description="useful for when you need to find details about BMO bank like category it follows, fiscal year end etc"
-    ),
-    Tool(
-        name="Credit Risk –Internal Ratings Based Approach",
-        func=qa_creditirb.run,
-        description="useful for when you need to find details about Credit Risk –Internal Ratings Based Approach "
-    ),
-    Tool(
-        name="Credit Risk –Standardized Approach",
-        func=qa_creditstd.run,
-        description="useful for when you need to find details about Credit Risk –Standardized Approach "
-    ),
-    Tool(
-        name="SMSB",
-        func=qa_smsb.run,
-        description="useful for when you need to find details about SMSB that is one category approach among BCAR"
-    ),
-    Tool(
-        name="National Bnak Of Canada Annual Report",
-        func=qa_nbc.run,
-        description="useful for when you need to find details about National Bank of Canada like category it follows, fiscal year end etc"
-    ),
-]
-planner = load_chat_planner(llm)
-executor = load_agent_executor(llm, tools, verbose=True)
-agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
+for index in indices[1:]:
+    indices[0].merge_from(index)
+
+# qa_bcar = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
+# qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriver, verbose=True)
+# qa_creditirb = RetrievalQA.from_chain_type(llm=llm, retriever=creditirb_retriever, verbose=True)
+# qa_creditstd = RetrievalQA.from_chain_type(llm=llm, retriever=creditstd_retriever, verbose=True)
+# qa_smsb = RetrievalQA.from_chain_type(llm=llm, retriever=smsb_retriever, verbose=True)
+# qa_nbc = RetrievalQA.from_chain_type(llm=llm, retriever=nbc_retriever, verbose=True)
+
+# tools = [
+#     Tool(
+#         name = "BCAR",
+#         func=qa_bcar.run,
+#         description="useful for when you need to find answer regarding bcar different categories and schedules"
+#     ),
+#     Tool(
+#         name="BMO Annual Report",
+#         func=qa_bmo.run,
+#         description="useful for when you need to find details about BMO bank like category it follows, fiscal year end etc"
+#     ),
+#     Tool(
+#         name="Credit Risk –Internal Ratings Based Approach",
+#         func=qa_creditirb.run,
+#         description="useful for when you need to find details about Credit Risk –Internal Ratings Based Approach "
+#     ),
+#     Tool(
+#         name="Credit Risk –Standardized Approach",
+#         func=qa_creditstd.run,
+#         description="useful for when you need to find details about Credit Risk –Standardized Approach "
+#     ),
+#     Tool(
+#         name="SMSB",
+#         func=qa_smsb.run,
+#         description="useful for when you need to find details about SMSB that is one category approach among BCAR"
+#     ),
+#     Tool(
+#         name="National Bnak Of Canada Annual Report",
+#         func=qa_nbc.run,
+#         description="useful for when you need to find details about National Bank of Canada like category it follows, fiscal year end etc"
+#     ),
+# ]
+# planner = load_chat_planner(llm)
+# executor = load_agent_executor(llm, tools, verbose=True)
+# agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
+
+agent = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
 
 # generated stores AI generated responses
 st.title("BMO Chatbot")
