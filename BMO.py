@@ -2,24 +2,24 @@ import os
 # from dotenv import load_dotenv, find_dotenv
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
-from langchain.llms import AzureOpenAI
-from langchain.document_loaders import DirectoryLoader,PyPDFLoader
-from langchain.document_loaders import UnstructuredExcelLoader
-from langchain.vectorstores import DocArrayInMemorySearch
+# from langchain.llms import AzureOpenAI
+# from langchain.document_loaders import DirectoryLoader,PyPDFLoader
+# from langchain.document_loaders import UnstructuredExcelLoader
+# from langchain.vectorstores import DocArrayInMemorySearch
 # from langchain.mpiemory import ConversationBufferMemory
 # from IPython.display import display, Markdown
-import pandas as pd
+# import pandas as pd
 # import gradio as gr
-import random
-import time
-from langchain.text_splitter import CharacterTextSplitter
+# import random
+# import time
+# from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain import PromptTemplate
+# from langchain import PromptTemplate
 from langchain.vectorstores import Chroma
 from langchain.agents.tools import Tool
 from langchain.experimental.plan_and_execute import PlanAndExecute, load_agent_executor, load_chat_planner
-from langchain import OpenAI, VectorDBQA
-from langchain.chains.router import MultiRetrievalQAChain
+# from langchain import OpenAI, VectorDBQA
+# from langchain.chains.router import MultiRetrievalQAChain
 import streamlit as st
 from streamlit_chat import message
 
@@ -29,12 +29,12 @@ os.environ["OPENAI_API_KEY"] = "sk-BcEXsV2KHbl1Bvi0MAu7T3BlbkFJGTsKDfMdC39rYOlTN
 llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
 st.write("loading chroma")
-bcar_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/BCAR_Embedding").as_retriever()
-smsb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/SMSB_EMBEDDING").as_retriever()
-bmo_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/BMO_FULL_EMBEDDING").as_retriever()
-creditirb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/IRB").as_retriever()
-creditstd_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/credit_risk_standartize").as_retriever()
-nbc_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"/workspaces/msc/zip_bmo emb/NBC_Embedding").as_retriever()
+bcar_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/BCAR_Embedding").as_retriever()
+smsb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/SMSB_EMBEDDING").as_retriever()
+bmo_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/BMO_FULL_EMBEDDING").as_retriever()
+creditirb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/IRB").as_retriever()
+creditstd_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/credit_risk_standartize").as_retriever()
+nbc_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/NBC_Embedding").as_retriever()
 st.write("loading qa")
 qa_bcar = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
 qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriever, verbose=True)
