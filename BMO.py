@@ -6,7 +6,7 @@ from langchain.llms import AzureOpenAI
 from langchain.document_loaders import DirectoryLoader,PyPDFLoader
 from langchain.document_loaders import UnstructuredExcelLoader
 from langchain.vectorstores import DocArrayInMemorySearch
-from langchain.mpiemory import ConversationBufferMemory
+# from langchain.mpiemory import ConversationBufferMemory
 from IPython.display import display, Markdown
 import pandas as pd
 # import gradio as gr
