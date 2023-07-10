@@ -95,6 +95,7 @@ agent = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever.as_retriev
 
 # generated stores AI generated responses
 st.title("BMO Chatbot")
+
 if 'something' not in st.session_state:
     st.session_state.something = ''
 
@@ -108,7 +109,7 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 messages = st.container()
-user_input = st.text_input("Query",st.session_state.text, key="widget",on_change=submit)
+user_input = st.text_input("Query", key="widget", on_change=submit)
 if user_input:
     output = agent.run(user_input)
     st.session_state.past.append(user_input)
