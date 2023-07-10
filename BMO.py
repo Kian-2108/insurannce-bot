@@ -117,7 +117,7 @@ if st.session_state.something:
 if 'generated' in st.session_state:
     with messages:
         for i in range(len(st.session_state['generated'])):
-            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user',avatar_style="initials",seed="User")
-            message(st.session_state["generated"][i], key=str(i),avatar_style="initials",seed="Bot")
+            message(st.session_state['past'][i], is_user=True, key=str(i) + '_user',avatar_style="initials",seed="U")
+            message(st.session_state["generated"][i], key=str(i),avatar_style="initials",seed="B")
 
 # agent.run("Which reports bank BMO has to send to OSFI for BCAR Credit Risk?")
