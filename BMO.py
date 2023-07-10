@@ -1,7 +1,8 @@
 import os
 # from dotenv import load_dotenv, find_dotenv
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI, 
+from langchain.llms import GooglePalm
 # from langchain.llms import AzureOpenAI
 # from langchain.document_loaders import DirectoryLoader,PyPDFLoader
 # from langchain.document_loaders import UnstructuredExcelLoader
@@ -25,17 +26,20 @@ from streamlit_chat import message
 
 # _ = load_dotenv(find_dotenv())
 os.environ["OPENAI_API_KEY"] = "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"
-
 llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
-st.write("loading chroma")
+
+# os.environ["GOOGLE_API_KEY"] = "AIzaSyD6lORTrf5wLPP6wR6keH6yhP2Kwd-A1r4"
+# llm = GooglePalm(model_name = "models/text-bison-001",temperature = 0.1)
+# embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
+
 bcar_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/BCAR_Embedding").as_retriever()
 smsb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/SMSB_EMBEDDING").as_retriever()
 bmo_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/BMO_FULL_EMBEDDING").as_retriever()
 creditirb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/IRB").as_retriever()
 creditstd_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/credit_risk_standartize").as_retriever()
 nbc_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/NBC_Embedding").as_retriever()
-st.write("loading qa")
+
 qa_bcar = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
 qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriever, verbose=True)
 qa_creditirb = RetrievalQA.from_chain_type(llm=llm, retriever=creditirb_retriever, verbose=True)
