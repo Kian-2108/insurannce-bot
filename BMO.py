@@ -24,7 +24,7 @@ import streamlit as st
 from streamlit_chat import message
 
 # _ = load_dotenv(find_dotenv())
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0)
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
