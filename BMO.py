@@ -31,7 +31,7 @@ embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
 
 # os.environ["GOOGLE_API_KEY"] = "AIzaSyD6lORTrf5wLPP6wR6keH6yhP2Kwd-A1r4"
 # llm = GooglePalm(model_name = "models/text-bison-001",temperature = 0.1)
-# embeddings = OpenAIEmbeddings(model="text-embedding-ada-002",chunk_size =1)
+# embeddings = GooglePalmEmbeddings(model="text-embedding-ada-002",chunk_size =1)
 
 bcar_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/BCAR_Embedding").as_retriever()
 smsb_retriever  = Chroma(embedding_function=embeddings,persist_directory=f"./zip_bmo emb/SMSB_EMBEDDING").as_retriever()
