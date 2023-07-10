@@ -40,7 +40,7 @@ smsb_retriever = FAISS.load_local(folder_path='./FAISS_VS', embeddings=embedding
 indices = [bcar_retriever,bmo_retriver,creditirb_retriever,creditstd_retriever,nbc_retriever,smsb_retriever]
 
 for index in indices[1:]:
-    indices[0].merge_from(index)
+    indices[0].merge(index)
 
 # qa_bcar = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever, verbose=True)
 # qa_bmo = RetrievalQA.from_chain_type(llm=llm, retriever=bmo_retriver, verbose=True)
