@@ -1,6 +1,6 @@
-pydantic
+pydantic==1.10.8
 tiktoken
-langchain
+langchain==0.0.228
 streamlit-chat
 openai
 chromadb
