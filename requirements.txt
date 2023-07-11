@@ -1,3 +1,5 @@
+pydantic
+tiktoken
 langchain
 streamlit-chat
 openai
