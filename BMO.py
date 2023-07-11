@@ -4,7 +4,7 @@ from langchain.llms import GooglePalm
 from langchain.vectorstores import FAISS
 from langchain.embeddings import GooglePalmEmbeddings
 from langchain.chains import RetrievalQA
-# from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI
 # from langchain.llms import AzureOpenAI
 # from langchain.document_loaders import DirectoryLoader,PyPDFLoader
 # from langchain.document_loaders import UnstructuredExcelLoader
@@ -91,7 +91,10 @@ for index in indices[1:]:
 # executor = load_agent_executor(llm, tools, verbose=True)
 # agent = PlanAndExecute(planner=planner, executor=executor, verbose=True)
 
-agent = RetrievalQA.from_chain_type(llm=llm, retriever=bcar_retriever.as_retriever(), verbose=True)
+os.environ["OPENAI_API_KEY"] = "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"
+llm_chat = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0.1)
+
+agent = RetrievalQA.from_chain_type(llm=llm_chat, retriever=bcar_retriever.as_retriever(), verbose=True)
 
 # generated stores AI generated responses
 st.title("BMO Chatbot")
