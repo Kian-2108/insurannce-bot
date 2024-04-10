@@ -140,7 +140,7 @@ Use the following context (delimited by <ctx></ctx>) for finding out the relevan
 You will be given relevant points from various documents that will help you answer the user question.
 Below is a list of relevant points along with the name of the document from where thoes points are from.
 Consider all the documents provided to you and answer the question by analysising the relevant points from the {institute} and Payment Services Act both.
-You might have to compare points from more than one document to answer the question. You have to conclude betwwen the contexts provided to you as relevant points from document 1 and document 2.
+You might have to compare points from more than one document to answer the question. Just give the concluded response betwwen the relevant points from document 1 and document 2.
 {context}"""
 
     compare_system_prompt = SystemMessagePromptTemplate.from_template(template=compare_system_template)
