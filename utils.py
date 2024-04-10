@@ -150,8 +150,8 @@ Use the following context (delimited by <ctx></ctx>) for finding out the relevan
 Below is a list of relevant points along with the name of the document from where thoes points are from.
 Consider all the documents provided to you and answer the question by analysising the relevant points from the {institute} and Payment Services Act both.
 Just give the concluded response betwwen the relevant points from document 1 and document 2. If you have asked a question like based on the Payment 
-service that {insutitute} follow that is not mentioned in context(delimited by <ctx></ctx>) than go through the following:
-Payment Services that OCBC follows is: Account issuance service,Domestic money transfer service,Cross-border money transfer service, Merchant acquisition service, E-money issuance service
+service that {insutitute} follow that is not mentioned in context(delimited by <ctx></ctx>) than go through the following
+Payment Services that OCBC follows is Account issuance service,Domestic money transfer service,Cross-border money transfer service, Merchant acquisition service, E-money issuance service
 <ctx>
 {context}
 </ctx>"""
