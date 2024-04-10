@@ -85,6 +85,7 @@ openai_llm, embeddings, anthropic_llm = utils.setup_llm()
 
 all_documents = {
     "Payment Services Act"              :   {"data":"./data/Payment Services Act 2019 - Notice on regulatory returns.pdf","index":"Payment Services Act 2019 - Notice on regulatory returns_index"},
+    "OCBC"                              :   {"data":"./data/2023-annual-report-OCBC.pdf","index":"2023-annual-report-OCBC_index"},
     "Bank X"                            :   {"data":"./data/First column Second column Third column Payment service Requ.pdf","index": "First column Second column Third column Payment service Requ_index"},
     "Bank of Montreal (BMO)"            :   {"data":"./data/bmo_ar2022_removed.pdf","index":"bmo_ar2022 (2)_index"},
     "Versa Bank (VB)"                   :   {"data":"./data/Versa bank","index":"VBAR_index"},
@@ -108,7 +109,7 @@ def analyse():
             session.analyze_disabled = True
             session.institute = institute
             session.docs = {
-            f"{session.institute} Annual Report"        :   utils.load_doc(all_documents[session.institute]["data"]),
+            f"{session.institute} Annual Report"        :   utils.load_anuual_report(all_documents[session.institute]["data"]),
             "Payment Services Act"   :   utils.load_doc(all_documents["Payment Services Act"]["data"]),
             }                            
             session.input_disabled = False
