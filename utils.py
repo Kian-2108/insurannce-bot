@@ -116,8 +116,8 @@ def load_doc(path):
 
 def compare_answer(summary_llm,chat_llm,session,question,docs):
     
-    retrival_system_template = """You are a helpful assistant, You need to extract as much text as you can which is relater or relevant to the answer of the user question from the context provided.
-Do not try to answer the question, just extract the text relevant to the answer of the user question.
+    retrival_system_template = """You are a Reg Reporting Assistant , You need to extract as much content as you can which is relater or relevant to the answer of the user question from the context provided.
+Do not try to answer the question, just extract the text relevant to the answer of the user question that will help user to find there answer futher.
 Use the following context (delimited by <ctx></ctx>) for finding out the relevant text:
 
 <ctx>
@@ -136,12 +136,11 @@ Use the following context (delimited by <ctx></ctx>) for finding out the relevan
     
     details = "\n\n"+question+"\n\n"+compare_context
     
-    compare_system_template = """You are a helpful chatbot who has to answer question of a user from the institute {institute}.
+    compare_system_template = """You are a Reg Reporting Assistant who has to answer question of a user from the institute {institute}.
 You will be given relevant points from various documents that will help you answer the user question.
 Below is a list of relevant points along with the name of the document from where thoes points are from.
-Consider all the documents provided to you and answer the question by choosing all the relevant points to the question.
-You might have to compare points from more than one document to answer the question.
-
+Consider all the documents provided to you and answer the question by analysising the relevant points from the {institute} and Payment Services Act both.
+You might have to compare points from more than one document to answer the question. You have to conclude betwwen the contexts provided to you as relevant points from document 1 and document 2.
 {context}"""
 
     compare_system_prompt = SystemMessagePromptTemplate.from_template(template=compare_system_template)
