@@ -85,7 +85,7 @@ openai_llm, embeddings, anthropic_llm = utils.setup_llm()
 
 all_documents = {
     "Payment Services Act"              :   {"data":"./data/Payment Services Act 2019 - Notice on regulatory returns.pdf","index":"Payment Services Act 2019 - Notice on regulatory returns_index"},
-    "OCBC"                              :   {"data":"./data/splitted_pdf.pdf","index": "splitted_pdf_index"},
+    "Bank X"                            :   {"data":"./data/First column Second column Third column Payment service Requ.pdf","index": "First column Second column Third column Payment service Requ_index"},
     "Bank of Montreal (BMO)"            :   {"data":"./data/bmo_ar2022_removed.pdf","index":"bmo_ar2022 (2)_index"},
     "Versa Bank (VB)"                   :   {"data":"./data/Versa bank","index":"VBAR_index"},
     "Home Bancorp (HB)"                 :   {"data":"./data/Home Bancorp 2022 Annual Report.pdf"},
