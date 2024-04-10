@@ -109,7 +109,7 @@ def analyse():
             session.analyze_disabled = True
             session.institute = institute
             session.docs = {
-            f"{session.institute} Annual Report"        :   utils.load_anuual_report(all_documents[session.institute]["data"]),
+            f"{session.institute} Annual Report"        :   utils.load_doc(all_documents[session.institute]["data"]),
             "Payment Services Act"   :   utils.load_doc(all_documents["Payment Services Act"]["data"]),
             }                            
             session.input_disabled = False
