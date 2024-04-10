@@ -109,7 +109,7 @@ def analyse():
             session.institute = institute
             session.docs = {
             f"{session.institute} Annual Report"        :   utils.load_doc(all_documents[session.institute]["data"]),
-            "Payment Services Act"   :   utils.load_doc(all_documents["BCAR"]["data"]),
+            "Payment Services Act"   :   utils.load_doc(all_documents["Payment Services Act"]["data"]),
             }                            
             session.input_disabled = False
             session.transcript.append(["assistant","How can I help you today?"])
