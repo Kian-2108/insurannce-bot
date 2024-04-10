@@ -84,7 +84,7 @@ utils.setup_session(session)
 openai_llm, embeddings, anthropic_llm = utils.setup_llm()
 
 all_documents = {
-    "BCAR"                              :   {"data":"data/Payment Services Act 2019 - Notice on regulatory returns.pdf","index":"Payment Services Act 2019 - Notice on regulatory returns_index"},
+    "Payment Services Act"                              :   {"data":"data/Payment Services Act 2019 - Notice on regulatory returns.pdf","index":"Payment Services Act 2019 - Notice on regulatory returns_index"},
     "Bank of Montreal (BMO)"            :   {"data":"./data/bmo_ar2022_removed.pdf","index":"bmo_ar2022 (2)_index"},
     "Versa Bank (VB)"                   :   {"data":"./data/Versa bank","index":"VBAR_index"},
     "Home Bancorp (HB)"                 :   {"data":"./data/Home Bancorp 2022 Annual Report.pdf"},
@@ -93,7 +93,7 @@ all_documents = {
     }
 
 institutes = all_documents.copy()
-del institutes["BCAR"]
+del institutes["Payment Services Act"]
 
 with st.sidebar:
     # l,r = st.columns([1,1.])
@@ -108,7 +108,7 @@ def analyse():
             session.institute = institute
             session.docs = {
             f"{session.institute} Annual Report"        :   utils.load_doc(all_documents[session.institute]["data"]),
-            "Basel Capital Adequacy Reporting (BCAR)"   :   utils.load_doc(all_documents["BCAR"]["data"]),
+            "Payment Services Act"   :   utils.load_doc(all_documents["BCAR"]["data"]),
             }                            
             session.input_disabled = False
             session.transcript.append(["assistant","How can I help you today?"])
